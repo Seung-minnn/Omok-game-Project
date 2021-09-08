@@ -1,7 +1,7 @@
 ﻿
 namespace Client
 {
-    partial class Form1
+    partial class MenuForm
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -53,14 +53,14 @@ namespace Client
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // Form1
+            // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.singlePlayButton);
-            this.Name = "Form1";
+            this.Name = "MenuForm";
             this.Text = "Omok Game Project";
             this.ResumeLayout(false);
 

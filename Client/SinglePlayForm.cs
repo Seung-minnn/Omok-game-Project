@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class Form1 : Form
+    public partial class SinglePlayForm : Form
     {
-        public Form1()
+        public SinglePlayForm()
         {
             InitializeComponent();
-        }
-
-        private void singlePlayButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
