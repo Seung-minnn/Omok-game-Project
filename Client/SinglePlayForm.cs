@@ -51,20 +51,20 @@ namespace Client
         {
             Graphics gp = e.Graphics;
             Color lineColor = Color.Black; //오목판 선 색깔
+            //테두리 그리기
             Pen p = new Pen(lineColor, 2);
             gp.DrawLine(p, rectSize / 2, rectSize / 2, rectSize / 2, rectSize * edgeCount - rectSize / 2); //좌측
             gp.DrawLine(p, rectSize / 2, rectSize / 2, rectSize * edgeCount - rectSize / 2, rectSize / 2); //상측
             gp.DrawLine(p, rectSize / 2, rectSize * edgeCount - rectSize / 2, rectSize * edgeCount - rectSize / 2, rectSize * edgeCount - rectSize / 2); //하측
             gp.DrawLine(p, rectSize * edgeCount - rectSize / 2, rectSize / 2, rectSize * edgeCount - rectSize / 2, rectSize * edgeCount - rectSize / 2); //우측
-            p = new Pen(lineColor, 1);
             
             //대각선 방향으로 이동하면서 십자가 모양의 선 그리기
+            p = new Pen(lineColor, 1);
             for(int i = rectSize + rectSize / 2; i < rectSize * edgeCount - rectSize / 2; i += rectSize)
             {
-                gp.DrawLine(p, rectSize / 2, i, rectSize * edgeCount - rectSize / 2, i);
-                gp.DrawLine(p, i, rectSize / 2, i, rectSize * edgeCount - rectSize / 2);
+                gp.DrawLine(p, rectSize / 2, i, rectSize * edgeCount - rectSize / 2, i);    //가로선
+                gp.DrawLine(p, i, rectSize / 2, i, rectSize * edgeCount - rectSize / 2); //세로선
             }
-
         }
     }
 }
