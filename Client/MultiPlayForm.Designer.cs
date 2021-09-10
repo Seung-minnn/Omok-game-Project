@@ -63,6 +63,7 @@ namespace Client
             this.enterButton.TabIndex = 2;
             this.enterButton.Text = "접속하기";
             this.enterButton.UseVisualStyleBackColor = true;
+            this.enterButton.Click += new System.EventHandler(this.enterButton_Click);
             // 
             // playButton
             // 
@@ -72,6 +73,7 @@ namespace Client
             this.playButton.TabIndex = 3;
             this.playButton.Text = "게임시작";
             this.playButton.UseVisualStyleBackColor = true;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
             // status
             // 

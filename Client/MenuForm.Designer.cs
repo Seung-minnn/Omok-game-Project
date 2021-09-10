@@ -62,6 +62,7 @@ namespace Client
             this.multiPlayButton.TabIndex = 2;
             this.multiPlayButton.Text = "함께하기";
             this.multiPlayButton.UseVisualStyleBackColor = true;
+            this.multiPlayButton.Click += new System.EventHandler(this.multiPlayButton_Click);
             // 
             // MenuForm
             // 

@@ -25,6 +25,14 @@ namespace Client
             singlePlayForm.Show();
         }
 
+        private void multiPlayButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            MultiPlayForm multiPlayForm = new MultiPlayForm();
+            multiPlayForm.FormClosed += new FormClosedEventHandler(childForm_Closed);
+            multiPlayForm.Show();
+        }
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
