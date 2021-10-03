@@ -32,13 +32,14 @@ namespace Client
             this.singlePlayButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.multiPlayButton = new System.Windows.Forms.Button();
+            this.AIPlayButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // singlePlayButton
             // 
-            this.singlePlayButton.Location = new System.Drawing.Point(234, 84);
+            this.singlePlayButton.Location = new System.Drawing.Point(234, 57);
             this.singlePlayButton.Name = "singlePlayButton";
-            this.singlePlayButton.Size = new System.Drawing.Size(100, 40);
+            this.singlePlayButton.Size = new System.Drawing.Size(100, 37);
             this.singlePlayButton.TabIndex = 0;
             this.singlePlayButton.Text = "혼자하기";
             this.singlePlayButton.UseVisualStyleBackColor = true;
@@ -46,9 +47,9 @@ namespace Client
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(234, 223);
+            this.exitButton.Location = new System.Drawing.Point(234, 257);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(100, 40);
+            this.exitButton.Size = new System.Drawing.Size(100, 37);
             this.exitButton.TabIndex = 1;
             this.exitButton.Text = "종료하기";
             this.exitButton.UseVisualStyleBackColor = true;
@@ -56,19 +57,30 @@ namespace Client
             // 
             // multiPlayButton
             // 
-            this.multiPlayButton.Location = new System.Drawing.Point(234, 155);
+            this.multiPlayButton.Location = new System.Drawing.Point(234, 123);
             this.multiPlayButton.Name = "multiPlayButton";
-            this.multiPlayButton.Size = new System.Drawing.Size(100, 40);
+            this.multiPlayButton.Size = new System.Drawing.Size(100, 37);
             this.multiPlayButton.TabIndex = 2;
             this.multiPlayButton.Text = "함께하기";
             this.multiPlayButton.UseVisualStyleBackColor = true;
             this.multiPlayButton.Click += new System.EventHandler(this.multiPlayButton_Click);
             // 
+            // AIPlayButton
+            // 
+            this.AIPlayButton.Location = new System.Drawing.Point(234, 189);
+            this.AIPlayButton.Name = "AIPlayButton";
+            this.AIPlayButton.Size = new System.Drawing.Size(100, 37);
+            this.AIPlayButton.TabIndex = 3;
+            this.AIPlayButton.Text = "인공지능 연습";
+            this.AIPlayButton.UseVisualStyleBackColor = true;
+            this.AIPlayButton.Click += new System.EventHandler(this.AIPlayButton_Click);
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(584, 358);
+            this.Controls.Add(this.AIPlayButton);
             this.Controls.Add(this.multiPlayButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.singlePlayButton);
@@ -83,6 +95,7 @@ namespace Client
         private System.Windows.Forms.Button singlePlayButton;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button multiPlayButton;
+        private System.Windows.Forms.Button AIPlayButton;
     }
 }
 
