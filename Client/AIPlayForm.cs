@@ -20,8 +20,16 @@ namespace Client
         private Horse nowPlayer = Horse.BLACK;
         private Horse aiPlayer, userPlayer;
 
+        /* targetX와 targetY는 alpha-beta pruning을 적용했을 때
+         * 결과적으로 구해진 최적의 수
+         * 즉, 오목 인공지능 입장에서 보았을 때 
+         * 오목 인공지능이 두면 가장 좋은 수가 targetX, targetY에 담김*/
         private int targetX, targetY;
-        private int limit = 1;
+        /* limit 내가 보고자 하는 수 
+         * ex) limit=0 자기 자신의 수만 확인
+         * ex) limit=1 그보다 한 수 앞선 수를 내다볼 수 있음
+         * -> 즉, DFS를 종료하고자 하는 기점이라 생각하자 */
+        private int limit = 1;  
         private bool playing = false;
 
         private bool judge() // 승리 판정 함수
@@ -58,7 +66,7 @@ namespace Client
             this.boardPicture.Refresh();
 
             //AI와 사용자 중에서 먼저 공격할 사람 구하기
-            int rand = new Random().Next(1, 3);
+            int rand = new Random().Next(1, 3); //1 or 2
             if (rand == 1) aiPlayer = Horse.BLACK;
             else aiPlayer = Horse.WHITE;
             userPlayer = ((aiPlayer == Horse.BLACK) ? Horse.WHITE : Horse.BLACK);
@@ -110,6 +118,9 @@ namespace Client
 
         private void ai_Attack()
         {
+            /*AlphaBetaPruning함수 불러오게 되면 자동으로 
+             *targetX, targetY에 ai가 두었을때의 최적의 수 발견
+             *실제로 그 위치에 돌을 두게 함*/
             AlphaBetaPruning(0, -1000000, 1000000);
             board[targetX, targetY] = aiPlayer;
             Graphics g = this.boardPicture.CreateGraphics();
@@ -124,6 +135,8 @@ namespace Client
                 g.FillEllipse(brush, targetX * rectSize, targetY * rectSize, rectSize, rectSize);
             }
 
+            /*만약 ai 가 현재의 돌로 5목을 완성했다면 게임 종료
+             *안끝나면 사용자 차례로 넘어감*/
             if (judge())
             {
                 if (nowPlayer == aiPlayer) status.Text = "AI 플레이어의 승리입니다.";
@@ -1184,7 +1197,10 @@ namespace Client
                         }
 
                         /********** 단순히 전체에서 4목이 만들어진 경우만 체크 **********/
-
+                        /* 왼쪽과 오른쪽 비교해서 
+                         * open4 열린4목
+                         * half4 한쪽만 열린4목
+                         * close4 닫힌4목  알려줌*/
                         count = make4mok1(i, j);
                         if (count == 2) open4++;
                         else if (count == 1) half4++;
@@ -1386,23 +1402,29 @@ namespace Client
         }
 
         //AlphaBetaPruning 알고리즘 함수
+        /* 기본적으로 alpha -백만, beta 백만값 넣음
+         * alpha값은 최대한 큰거를 선택해야하므로 초기값 -백만 선택
+         * level은 0부터 출발*/
         int AlphaBetaPruning(int level, int alpha, int beta)
         {
             //만약에 현재 최대 깊이인 limit에 도달한 경우
             if (level == limit)
             {
                 //AI의 평가 가치에서 플레이어의 평가 가치를 뺀 수를 반환
+                /* evlauate 함수는 현재 특정한 플레이어가 오목판에 둔 돌을 기준으로
+                 * 그 플레이어의 수의 가치를 평가하는 함수
+                 * 우리는 ai가치에서 user가치 빼서 리턴*/
                 return evaluate(aiPlayer) - evaluate(userPlayer);
             }
 
-            //MAX 부분에 해당하는 경우
+            //MAX 부분에 해당하는 경우 (인공지능 입장)
             if (level % 2 == 0)
             {
                 //더 이상 작아질 수 없는 수를 MAX로 설정
                 int max = -1000000;
                 //탐색을 끝내는 경우 find를 1로 설정
                 int find = 0;
-                //전체 바둑판을 모두 탐색
+                //전체 바둑판을 모두 탐색 (DFS 수행)
                 for (int i = 0; i < edgeCount; i++)
                 {
                     for (int j = 0; j < edgeCount; j++)
@@ -1442,7 +1464,7 @@ namespace Client
                 return max;
             }
 
-            // MIN 부분에 해당하는 경우
+            // MIN 부분에 해당하는 경우 (플레이어의 수 입장)
             else
             {
                 // 더이상 커질 수 없는 수를 min으로 설정
